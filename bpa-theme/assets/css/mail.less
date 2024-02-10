@@ -1,0 +1,97 @@
+@background-dark: #11112e ;
+
+@accent: #ffe126 ;
+
+body {
+  background: #e3e7ea;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 20px;
+  text-transform: uppercase;
+  color: @background-dark;
+}
+
+.content {
+  width: 700px;
+  padding: 50px 0;
+  margin: auto;
+
+  .logo{
+    padding-bottom: 50px;
+    text-align: right;
+    img{
+      width: 300px;
+    }
+  }
+  @media (max-width: 800px) {
+    width: 90%;
+    .logo{
+      padding-bottom: 30px;
+      text-align: right;
+      img{
+        width:30%;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+
+    .logo{
+      padding-bottom: 20px;
+      text-align: right;
+      img{
+        width:40%;
+      }
+    }
+  }
+}
+
+.concerts {
+  background: @background-dark;
+  color: #fff;
+
+  h1,  h2,h3 {
+    color: @accent;
+  }
+
+  .concerts h3 {
+    margin: 5px 0 10px;
+  }
+}
+p {
+  text-align: justify;
+}
+
+hr {
+  margin: 30px 0;
+  border: none;
+  border-bottom: 1px solid;
+
+}
+
+.btn {
+  display: inline-block;
+  color: #000000;
+  padding: 5px 15px;
+  border: solid 1px;
+  text-decoration: none;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+.concerts .btn {
+  color: #ffffff;
+  &:hover {
+    color: #e3e7ea;
+  }
+}
+.concert-item{
+  margin: 0 0 30px;
+  &:last-child{
+    margin: 0;
+  }
+}
