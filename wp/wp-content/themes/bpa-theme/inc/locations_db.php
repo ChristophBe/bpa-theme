@@ -2,7 +2,8 @@
 
 
 global $location_db_version;
-$location_db_version = '1.0';
+
+use bpause bpause bpause bpause bpa$location_db_version = '1.0';
 
 function location_db_init(): void
 {

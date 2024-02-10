@@ -1,6 +1,6 @@
 <?php
 
-require_once("locations_db.php");
+use bpause bpause bpause bparequire_once("locations_db.php");
 require_once("Location.php");
 /** Step 2 (from text above). */
 add_action( 'admin_menu', 'my_plugin_menu' );

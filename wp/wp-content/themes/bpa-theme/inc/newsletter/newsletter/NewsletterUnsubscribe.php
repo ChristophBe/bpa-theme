@@ -63,4 +63,4 @@ class NewsletterUnsubscribe
         return verify_newsletter_token($token,"unsubscribe");
     }
 }
-$newsletterUnsubscribe = new NewsletterUnsubscribe();
+$newsletterUnsubscribe = new theme\inc\newsletter\NewsletterUnsubscribe();

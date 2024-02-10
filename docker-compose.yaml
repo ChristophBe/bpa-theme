@@ -13,8 +13,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - wordpress:/var/www/html
-      - ./bpa-theme:/var/www/html/wp-content/themes/bpa-theme
+      - ./wp:/var/www/html
 
   db:
     image: mysql:8.0

@@ -107,4 +107,4 @@ class NewsletterSubscriptionExport
 }
 
 // Instantiate a singleton of this plugin
-$newsletterSubscriptionExport = new NewsletterSubscriptionExport();
+$newsletterSubscriptionExport = new theme\inc\newsletter\newsletter\NewsletterSubscriptionExport();

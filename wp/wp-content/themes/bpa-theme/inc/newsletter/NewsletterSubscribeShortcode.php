@@ -196,4 +196,4 @@ Diese E-Mail wurde Automatisch von (https://blaeserphilharmonie-aachen.de) gesen
      */
    }
 
-$newsletterSubscribeShortCode = new NewsletterSubscribeShortCode();
+$newsletterSubscribeShortCode = new theme\inc\newsletter\newsletter\NewsletterSubscribeShortCode();
