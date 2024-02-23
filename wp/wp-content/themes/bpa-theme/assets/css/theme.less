@@ -1,12 +1,12 @@
-@import (less) "fonts.less";
+//@import (less) "fonts.less";
 @import (less) "../bootstrap/css/bootstrap.css";
 
-
-@background-dark: #11112e ;
+@background-dark: #00102c;
 
 @accent: #ffe126 ;
 @background-middle-blue: #242648 ;
 //@background-dark: #1e1c32 ;
+
 @background: #e3e7ea ;
 @font-color-light: #111 ;
 @font-color-dark: #fff ;
@@ -48,8 +48,6 @@
 &.custom-checkbox {
   .custom-control-input {
     display: none;
-
-
   }
 }
 
@@ -59,7 +57,8 @@
   flex-grow: 1;
 }
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+
   background: @background;
 
   //background: #eee;
@@ -67,59 +66,67 @@ body {
   font-size: @font-size;
 
 
+  @sm-h1-size: 30px;
+  @sm-h2-size: 25px;
+  @sm-h3-size: 20px;
+  @sm-h4-size: 20px;
 
-  @sm-h1-size:30px;
-  @sm-h2-size:25px;
-  @sm-h3-size:20px;
-  @sm-h4-size:20px;
-
-  h1{
-    @media(max-width: @smMax){
+  h1 {
+    @media (max-width: @smMax) {
       font-size: @sm-h1-size;
     }
   }
-  h2{
-    @media(max-width: @smMax){
+
+  h2 {
+    @media (max-width: @smMax) {
       font-size: @sm-h2-size;
     }
   }
-  h3{
-    @media(max-width: @smMax){
+
+  h3 {
+    @media (max-width: @smMax) {
       font-size: @sm-h3-size;
     }
   }
-  h3{
-    @media(max-width: @smMax){
+
+  h3 {
+    @media (max-width: @smMax) {
       font-size: @sm-h4-size;
     }
   }
-  .h1{
-    @media(max-width: @smMax){
+
+  .h1 {
+    @media (max-width: @smMax) {
       font-size: @sm-h1-size;
     }
   }
-  .h2{
-    @media(max-width: @smMax){
+
+  .h2 {
+    @media (max-width: @smMax) {
       font-size: @sm-h2-size;
     }
   }
-  .h3{
-    @media(max-width: @smMax){
+
+  .h3 {
+    @media (max-width: @smMax) {
       font-size: @sm-h3-size;
     }
   }
-  .h4{
-    @media(max-width: @smMax){
+
+  .h4 {
+    @media (max-width: @smMax) {
       font-size: @sm-h4-size;
     }
   }
+
   .logo {
-    svg{
+    svg {
 
-      .logo-fill-white{
-        fill:#fff;
+      .logo-fill-white {
+        fill: #fff;
       }
-      .logo-fill-accent{
+
+      .logo-fill-accent {
         fill: @accent;
       }
     }
@@ -127,18 +134,21 @@ body {
 
   .btn {
     border-radius: 0;
-    i{
+
+    i {
       margin-right: 10px;
     }
   }
-  a{
-    &.btn{
+
+  a {
+    &.btn {
       text-decoration: none;
     }
   }
-  .alert{
-    &.alert-success{
-      color:    #fff;
+
+  .alert {
+    &.alert-success {
+      color: #fff;
       background-color: #1e1c3288;
     }
 
@@ -146,934 +156,79 @@ body {
     border: none transparent 0px;
   }
 
-  a{
+  a {
     color: @font-color-light;
     text-decoration: underline;
-    &:hover{
+
+    &:hover {
       color: @font-color-link-hover;
     }
   }
+
   h1, .h1, h2, .h2, h3, .h3 {
-    color: @background-dark;
-    text-transform: uppercase;
-    font-weight: bold;
-    a{
+
+    //text-transform: uppercase;
+    font-weight: 900;
+
+    a {
       text-decoration: none;
     }
 
-    .concert-title-subtitle{
-      display: block;
-      font-size: @font-size;
-      font-weight: normal;
-    }
+
   }
-  header {
-    position: relative;
-    min-height: 60vh;
-    flex-direction: column;
-    display: flex;
-    justify-content: space-between;
-    background: url(../img/bild_ap10.jpg) center;
-    background-size: cover;
+
+  header{
+    padding: 48px 0;
+    height: 60vh;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 
 
-    //box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2);
-    &:after {
-      content: "";
-
-      //opacity: 0.5;
-      background: linear-gradient(fade(@background-dark, 0%), fade(@background-dark,80%));
-      height: 30vh;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      position: absolute;
-    }
-    &:before {
-      content: "";
-
-      //opacity: 0.5;
-      background: linear-gradient(fade(@background-dark,80%), fade(@background-dark, 0%));
-      height: 20vh;
-      left: 0;
-      top: 0;
-      right: 0;
-      position: absolute;
-    }
-
-    &.front-page-header{
-       min-height: 80vh;
-      &:after {
-        height: 40vh;
-      }
-      &:before {
-        height: 50vh;
-      }
-     }
-    .header-row{
-      display: flex;
-      justify-content: space-between;
-
-      .logo {
-
-        width: 400px;
-        padding: 50px 15px;
-        z-index: 2;
-        @media(max-width: @smMax){
-          width: 70%;
-          padding: 30px 15px 0 ;
-        }
-
-      }
-
-      .nav{
-        padding: 50px 0;
-
-        z-index: 2;
-        display: flex;
-        align-items: center;
-        @media(max-width: @smMax){
-          padding: 30px 0 0 ;
-        }
-
-        nav {
-
-          @media (max-width: @mdMax) {
-            display: block;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            position: fixed;
-            align-items: center;
-            padding: 20px 0;
-            top: 0;
-            width: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(30,28,50,.9);
-          }
-
-        }
-
-        @media (max-width: @mdMax) {
-          &.active{
-            nav{
-              width: 100%;
-            }
-          }
-        }
-
-        ul{
-
-          list-style: none;
-          padding: 0;
-          margin: 0 ;
-
-          li{
-            float: left;
-            a{
-              text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-              line-height: 50px;
-              color: #fff;
-              font-weight: bold;
-              padding: 0 15px;
-              font-size: 15px;
-              text-decoration: none;
-              text-transform: uppercase;
-              &:hover{
-                color: @accent;
-
-                text-decoration: none;
-              }
-            }
-            &.current_page_item , &.current-menu-item {
-              a{
-                color: @accent
-              }
-            }
-            ul{
-              position: absolute;
-              //display: none;
-              min-width: 200px;
-              box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2);
-              background: fade(@background-dark,80%);
-              li{
-                float: none;
-                width: 100%;
-                a{
-                  display: block;
-                  overflow: hidden;
-                  width: 100%;
-                  height: 0;
-                  text-shadow: 0 0 0 transparent;
-                }
-              }
-            }
-            &:hover{
-              ul{
-                display: block;
-
-                li{
-                  a{
-                    color: #fff;
-                    height: 50px;
-                    &:hover{
-                      color: @accent
-                    }
-                  }
-                  &.current_page_item , &.current-menu-item {
-                    a{
-                      color: @accent
-                    }
-                  }
-
-                }
-              }
-            }
-          }
-          @media(max-width: @mdMax){
-            //position: fixed;
-            //background: fade(@background-dark,90%);
-            position: relative;
-            width: 0;
-            overflow: hidden;
-            min-height: 100%;
-            z-index: 4;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-content: center;
-            box-shadow: none;
-            li{
-              width: 250px;
-              line-height: 50px;
-              border-bottom: 1px solid fade(#ffffff,30%);
-              position: relative;
-              a{
-                display: block;
-                height: 50px;
-                line-height: 50px;
-                width: 100%;
-              }
-
-              &.menu-item-has-children{
-                &:before{
-                  display: block;
-                  position: absolute;
-                  top: 0px;
-                  right: 10px;
-                  z-index: 7;
-                  content: " ";
-                  height: 30px;
-                  width: 30px;
-                  border-left: 1px solid fade(#ffffff,50%);
-                  border-bottom: 1px solid fade(#ffffff,50%);
-                  .makeRotate(-45deg);
-                  .makeTransition(0.5s);
-                }
-                &:after{
-                  background: 0 0;
-                  height: 50px;
-                  width: 60px;
-                  display: block;
-                  position: absolute;
-                  content: " ";
-                  right: 0;
-                  top:0;
-                }
-
-              }
-              &:last-child{
-                border-bottom: 0 none transparent;
-              }
-              ul{
-
-                .makeTransition(0.5s);
-                height: auto;
-                position: relative;
-                display: block;
-                width: 100%;
-                min-height: 0;
-                margin-bottom: 0;
-
-                li{
-                  a{
-                    height: 0;
-
-
-                  }
-                  border-bottom: 0;
-                }
-              }
-              &:hover{
-                ul {
-                  li {
-                    a {
-                      height: 0;
-                    }
-                  }
-                }
-
-                &.sub-active, &.current_page_item , &.current-menu-item, &.current-menu-parent, &.current_page_parent {
-                  ul {
-
-                    li {
-                      a {
-                        height: 50px;
-                        color: #fff;
-                      }
-                      &.current_page_item , &.current-menu-item {
-                        a{
-                          color: @accent
-                        }
-                      }
-
-                      border-bottom: 1px solid fade(#ffffff,30%);
-                      &:last-child{
-                        border-bottom: 0 none transparent;
-                      }
-                    }
-                  }
-                }
-              }
-              &.sub-active, &.current_page_item , &.current-menu-item, &.current-menu-parent, &.current_page_parent{
-                ul{
-
-                  margin-bottom: 10px;
-                  li{
-                    a{
-                      height: 50px;
-                      color: #fff;
-
-                    }
-
-                    &.current_page_item , &.current-menu-item {
-                      a{
-                        color: @accent
-                      }
-                    }
-                    border-bottom: 1px solid fade(#ffffff,30%);
-                    &:last-child{
-                      border-bottom: 0 none transparent;
-                    }
-                  }
-                }
-                &.menu-item-has-children{
-                  &:before{
-                    top: 10px;
-                    right: -5px;
-                    .makeRotate(45deg)
-                  }
-                }
-              }
-            }
-
-          }
-        }
-        @media(max-width: @mdMax){
-
-          @bar-height:4px;
-          .nav-button{
-            display: flex;
-            height: 40px;
-            width: 60px;
-            flex-direction: column;
-            justify-content: space-between;
-            margin: 15px;
-            z-index: 5;
-            .bar{
-              display: block;
-              content:" ";
-              background: #fff;
-              height:  @bar-height;
-              width: 100%;
-            }
-          }
-
-          &.active{
-            .nav-button{
-              display: flex;
-              height: @bar-height;
-              position: fixed;
-              right: 0;
-              .bar{
-                opacity: 0;
-                height: 0;
-                &:first-child{
-                  opacity: 1;
-                  height:  @bar-height;
-                  .makeRotate(-45deg);
-
-                }
-                &:last-child{
-
-                  opacity: 1;
-                  margin-top: -1 * @bar-height;
-                  height:  @bar-height;
-                  .makeRotate(45deg);
-                }
-              }
-            }
-            ul{
-              //box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2);
-              width: 100%;
-              //right: 15px;
-              /*li{
-                ul{
-                  position: relative;
-                  display: block;
-                  width: 170px;
-                  top: 0;
-                  left: 15px;
-
-                }
-              }*/
-            }
-          }
-        }
-      }
-    }
-  }
-  section , footer{
-
-    padding: 70px 0;
-    @media(max-width: @mdMax) {
-      padding: 50px 0;
-    }
-    @media(max-width: @smMax) {
-      padding: 30px 0;
-    }
-
-    blockquote ,.blockquote{
-      background: #caced2;
-      padding: 15px;
-      font-style: italic;
-      margin-bottom: 15px;
-      p{
-        &:last-child{
-          margin: 0;
-          padding: 0;
-        }
-      }
-    }
-
-    &.concerts{
-      background: fade(@background-dark,90%);
-      color: #fff;
+    &:after{
       z-index: 1;
-
-      h3, .h1{
-        color: @font-color-dark;
-      }
-      h1, h2 {
-        color: @accent;
-        padding: 10px 0;
-
-        .concert-title-subtitle {
-          color: @font-color-dark;
-        }
-      }
-
-      .concert-item {
-        margin-top: 15px;
-        .concert-title{
-
-          height: 80px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-        }
-      }
-
-      &.concerts-home {
-        .concert-item {
-          @media (max-width: @smMax) {
-            text-align: center;
-            .concert-title-subtitle {
-              text-align: center;
-            }
-          }
-        }
-      }
-    }
-    &.newsletter {
-
-      color: @font-color-dark;
-      //background: fade(@background-dark, 90%);
-      background: @background-middle-blue;
-
-      h1, h2, h3 {
-        color: @font-color-dark;
-      }
-
-      .placeholder {
-        color: @font-color-dark;
-      }
-      a{
-        color: @accent;
-      }
-      input, .btn{
-        .btn-outline-light();
-      }
-      .form-control {
-        &::-webkit-input-placeholder {
-          .placeholder();
-        }
-
-        &::-moz-placeholder {
-          .placeholder();
-        }
-
-        &::-webkit-input-placeholder {
-          .placeholder();
-        }
-
-        &::-ms-input-placeholder {
-          .placeholder();
-        }
-
-        &:-ms-input-placeholder {
-          .placeholder();
-        }
-
-        &::placeholder {
-          .placeholder();
-        }
-
-      }
-
-    }
-
-    &.content {
-      //background: #e2e3e5;
-      //color: #333;
-      h1, h2, h3 {
-        text-align: left;
-      }
-
-      .post-row {
-
-        margin-bottom: 30px;
-        padding: 0 0 30px;
-        border-bottom: 1px solid #caced2;
-        &:last-child{
-          border-bottom: 0 none transparent;
-          margin-bottom: 0;
-          padding: 0;
-        }
-
-        .post-thumbnail {
-          img {
-            width: 100%;
-          }
-        }
-      }
-      .content-item {
-        //background: fade(@background,70%);
-        //padding:10px;
-
-        text-align: justify;
-
-        .concert-content{
-          margin-bottom: 15px;
-        }
-        .recording-player{
-          margin-bottom: 15px;
-
-        }
-      }
-      h4, h2,h1,h3{
-        a{
-          text-decoration: none;
-        }
-      }
-
-      .concert-meta{
-        .concert-meta--item{
-          margin: 15px 0;
-          color: @background-dark;
-          h4, h2,h1,h3{
-
-            &:last-child{
-              padding: 0;
-              margin: 0;
-            }
-          }
-
-        }
-      }
-      .concert-row{
-        display: flex;
-        align-items: center;
-      }
-      .concert-thumbnail{
-        height: 200px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        @media(max-width: @smMax){
-          margin-bottom: 20px;
-        }
-        img{
-          width: 100%;
-        }
-      }
-      .concert-poster{
-         img{
-           width: 100%;
-         }
-       }
-      .concert-item{
-        display: flex;
-        justify-content: space-between;
-
-      }
-      .content-sidebar{
-       // margin-top: 56px;
-      }
-
-    }
-    &.sponsoring{
-      background: lighten(@background-dark,10%);
-      box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2);
-      color: @font-color-dark;
-
-      h1,h2,h3{
-        color: @accent;
-      }
-    }
-
-    &.news{
-      background: #caced2;
-      .post-thumbnail {
-        height: 200px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        img{
-          width: 100%;
-        }
-        margin-bottom: 15px;
-      }
-      .content-item{
-        margin-bottom: 15px;
-      }
-    }
-
-    &.recordings {
-      background: @background-dark;
-      z-index: 2;
-
-      h3 {
-        color: @font-color-dark;
-        margin-bottom: 30px;
-      }
-      .btn{
-        margin-top: 20px;
-      }
-    }
-    .recording-player{
+      content: "";
       display: block;
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(fade(@background-dark, 00%), @background-dark);
+    }
+    h1,h2,h3,h4,h5{
+      color: #fff
+    }
+
+      .logo{
+        svg{
+          height: 100px;
+        }
+
+      }
+
+    .container{
+      z-index: 2;
       position: relative;
-      padding-bottom: 56.25%;
-
-      iframe{
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-      }
-    }
-    .recording-item {
-      margin-bottom: 15px;
-      a{
-        position: relative;
-        display: block;
-        box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.1);
-        //padding: 0;
-        .recording-info{
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          right: 10px;
-          z-index: 1;
-
-          .recording-composer{
-            display: block;
-            color: #fff;
-          }
-
-          .recording-name{
-            display: block;
-            color: @accent;
-          }
-
-        }
-        .recording-img{
-          img{
-            width: 100%;
-          }
-        }
-        &:after {
-          content: "";
-          //opacity: 0.5;
-          background: linear-gradient( fade(@background-dark, 0%), fade(@background-dark, 60%));
-          top: 50%;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          position: absolute;
-          .makeTransition(0.5s);
-        }
-        &:hover{
-          &:after{
-            top: 0;
-            background: linear-gradient( fade(@background-dark, 0%), fade(@background-dark, 90%));
-          }
-        }
-        /*&:before {
-          left: 50%;
-          top: 50%;
-          content:" ";
-          display: block;
-          position: absolute;
-          width: 0;
-          height: 0;
-          opacity: .5;
-          margin-top: -20px;
-          margin-left: -15px;
-          z-index: 3;
-          border-top: 20px solid transparent;
-          border-bottom: 20px solid transparent;
-          border-left: 40px solid @accent;
-        }*/
-      }
-
     }
 
-    &.copyright{
-      background: @background-dark;
+
+  }
+  section{
+    margin: 0 48px;
+  }
+  .upcoming-concerts{
+    .concert-image{
+      display: flex;
       color: #fff;
-      padding: 20px 0;
+      width: 100%;
+      height: 30%;
     }
   }
-  footer{
-    //background: @background-footer;
-
-
-    .support-item{
-      background: #fff;
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      float: left;
-      img{
-        width: 100%;
-        max-width: 200px;
-      }
-    }
-    .nav{
-      margin-bottom: 15px;
-      ul{
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        li{
-          padding: 0;
-          margin: 0;
-          a{
-            display: flex;
-            height: 40px;
-            width: 100%;
-            align-items: center;
-            line-height: 40px;
-            color:@font-color-light;
-
-
-            text-decoration: none;
-            i {
-              display: inline-block;
-              width: 30px;
-              margin-right: 10px;
-              height: 30px;
-              line-height: 30px;
-              font-size: 20px;
-              border-radius: 15px;
-              text-align: center;
-              background: @font-color-light;
-              color: @background;
-            }
-            &:hover{
-              color: @font-color-link-hover;
-              i{
-                background: @font-color-link-hover;
-              }
-            }
-
-
-          }
-        }
-      }
-    }
-  }
-
   .slider{
     width: 100%;
     overflow: hidden;
-    .slider-page-holder{
-      display: flex;
-      .slider-page{
-        display: flex;
-      }
-
-    }
-
-
-    .slider-controls{
-      margin:10px;
-      display: flex;
-      align-items: center;
-
-
-      .slider-controls-holder{
-        display: flex;
-
-
-        .slider-control-bubble{
-          display: flex;
-          margin: 10px;
-          border:solid 1px @font-color-dark;
-          height: 15px;
-          width: 15px;
-          border-radius: 15px;
-          &.slider-control-bubble-active{
-            background: @accent;
-            border-color: @accent;
-          }
-        } //slider-control-bubble-active
-
-
-      }
-    }
-  }
-  .concerts-home{
-     .slider-controls{
-       justify-content: center;
-     }
-   }
-  .news{
-    .slider{
-      .slider-controls{
-        .slider-controls-holder{
-          .slider-control-bubble{
-            border:solid 1px @font-color-light;
-            &.slider-control-bubble-active{
-              background: @font-color-light;
-              border-color: @font-color-light;
-            }
-
-          }
-        }
-      }
-
-    }
-
-  }
-}
-header section.concerts {
-  background: transparent;
-  margin-bottom: 30px;
-}
-
-.hidden-sm{
-  @media(max-width: @smMax){
-    display: none;
-  }
-}
-
-body.landing-page{
-
-  background: @background-dark;
-  header{
-    background: none;
-    min-height: 30vh;
-
-    &:after{
-      background: linear-gradient(rgba(17,17,46,0),rgb(17, 17, 46));
-      height: 15vh;
-    }
-  }
-
-  a{
-    color: @font-color-dark
-
-  }
-  .content{
-    margin-top: -5vh;
-    background: @background-dark;
-    color: @font-color-dark;
-
-    h1,h2,h3,h4,h5, .h1,.h2,.h3,.h4,.h5{
-      color: @font-color-dark;
-      margin: 30px 0 10px;
-    }
-
-
-    ul{
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      li{
-        padding: 0;
-        margin: 0;
-        border-bottom: 1px solid fade(#ffffff,30%);
-        &:last-child{
-          border-bottom: 0 none;
-        }
-        a {
-          width: 100%;
-          text-decoration: none;
-          text-transform: uppercase;
-          font-weight: bold;
-          line-height: 50px;
-          color: @font-color-dark;
-          border-radius: 0px;
-          margin-bottom: 10px;
-          text-align: left;
-          padding: 15px 15px;
-          i {
-            display: inline-block;
-            width: 30px;
-            margin-right: 10px;
-            height: 30px;
-            line-height: 30px;
-            font-size: 20px;
-            border-radius: 15px;
-            text-align: center;
-            background: @background;
-            color: @font-color-light;
-          }
-        }
-      }
-    }
-  }
-  footer{
-    background: @background-middle-blue;
-    padding: 0 ;
-    .recordings{
-      background: @background-middle-blue;
-    }
-    .concerts{
-      .btn-light{
-        color:@font-color-light
-      }
-    }
-
   }
 }

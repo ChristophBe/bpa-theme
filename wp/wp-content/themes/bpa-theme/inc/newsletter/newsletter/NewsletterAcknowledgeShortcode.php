@@ -1,6 +1,5 @@
 <?php
-
-use bpause bpause bpause bpause bpause bpause bpause bpause bpause bpause bpause bparequire_once "newsletter_token.php";
+require_once "newsletter_token.php";
 require_once "newsletter_send_mail.php";
 
 global $acknowledgeTokenVarName;
@@ -267,4 +266,4 @@ Diese E-Mail wurde Automatisch von (https://blaeserphilharmonie-aachen.de) gesen
     }
 }
 
-$newsletterSubscribeShortCode = new theme\inc\newsletter\NewsletterAcknowledgeShortCode();
+$newsletterSubscribeShortCode = new NewsletterAcknowledgeShortCode();

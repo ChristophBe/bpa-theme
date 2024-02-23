@@ -74,3 +74,29 @@ add_secondary_post_image("Beitragsbild", "post");
 
 
 add_action( 'widgets_init', 'add_news_letter_widget_area' );
+
+
+function theme_footer_copyright( $wp_customize ) {
+    $wp_customize->add_setting( 'homepage_title', array(
+        'default' => 'Herzlich Willkommen', //default value of setting
+    ));
+    $wp_customize->add_setting( 'homepage_subtitle', array(
+        'default' => '', //default value of setting
+    ));
+    $wp_customize->add_section( 'homepage_section', array(
+        'title' => __( 'Homepage', 'textdomain' ), //title of customizer menu section
+        'priority' => 20, //order of display
+    ));
+    $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'homepage_title_control', array(
+        'label' => __('Titel', 'textdomain' ), //label of the setting itself
+        'section' => 'homepage_section',
+        'settings' => 'homepage_title',
+    )));
+
+    $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'homepage_subtitle_control', array(
+        'label' => __('Subtitel', 'textdomain' ), //label of the setting itself
+        'section' => 'homepage_section',
+        'settings' => 'homepage_subtitle',
+    )));
+}
+add_action( 'customize_register', 'theme_footer_copyright' );

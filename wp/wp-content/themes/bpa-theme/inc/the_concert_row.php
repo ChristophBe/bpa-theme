@@ -30,6 +30,7 @@ function the_concert_row($class = false){
         foreach ($times as $time){
             if($time > time()){
                 $concertItems[$time] = array(
+                    "post" => $concert,
                     "title"=> $title,
 
                     "permalink"=> $permalink ."tag/". date("Y-m-d", $time) . "/",
@@ -46,16 +47,14 @@ function the_concert_row($class = false){
     if ( $concertItems && !is_post_type_archive("concert") ) :?>
 
 
-    <section class="concerts<?=$class? " " . $class :""?>">
+    <section class="upcoming-concerts">
         <div class="container">
 
-            <?php if(!is_front_page()): ?>
             <div class="row">
                 <div class="col">
-                    <h3 class="h2">Nächste Konzerte</h3>
+                    <h3 class="h1">Bevorstehende Konzerte</h3>
                 </div>
             </div>
-            <?php endif; ?>
             <div class="row concerts-row"></div>
             <div class="row concerts-items">
 
@@ -66,25 +65,34 @@ function the_concert_row($class = false){
 
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="concert-item">
-                    <span>
-                        <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down">%A, </span>%e. %B %Y</span> um %H:%M Uhr', $concert["time"]))?>
-                    </span>
+                        <div class="concert-image" style="background: url(<?=get_the_post_thumbnail_url($concert["post"], array(300,300))?>) center; background-size: cover;">
+
+                            <h2 class="concert-title-subtitle h3">
+                                <?= $concert["title"] ?>
+                            </h2>
+                        </div>
                         <div class="concert-title" >
 
-
-                        <h2 class="concert-title-subtitle h3">
-                            <?php if($concert["concert_is_project_concert"]): ?><span class="concert-title-subtitle">Konzert der </span><? endif;?>
-                            <?= $concert["title"] ?>
-                        </h2>
+                            <h2 class="concert-title-subtitle h3">
+                                <?= $concert["title"] ?>
+                            </h2>
                         </div>
+
+                        <div class="concert-date">
+                            <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down"></span>%e. %B</span> %H:%M', $concert["time"]))?>
+                        </div>
+                        <div class="concert-date">
+                            <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down"></span>%e. %B</span> %H:%M', $concert["time"]))?>
+                        </div>
+
                         <div class="btn-group">
 
                             <?php if($concert["concert_tickets_on_sell"]): ?>
 
-                                <a href="<?= get_site_url()?>/karten" class="btn btn-light mr-2">Kartenverkauf</a>
+                                <a href="<?= get_site_url()?>/karten" class="btn btn-primary mr-2">Kartenverkauf</a>
 
                             <?php endif; ?>
-                            <a href="<?= $concert["permalink"] ?>" class="btn btn-outline-light">Mehr Informationen</a>
+                            <a href="<?= $concert["permalink"] ?>" class="btn btn-outline-dark">Mehr Informationen</a>
                         </div>
                     </div>
                 </div>

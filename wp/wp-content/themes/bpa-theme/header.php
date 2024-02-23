@@ -9,7 +9,7 @@ the_html_header()
 ?>
 
 <body>
-<header<?= is_front_page() ? ' class="front-page-header"':'' ?> style="background:url(<?= !is_archive() && has_post_thumbnail() && $post->post_type!= "recording" ? get_the_post_thumbnail_url($post) : header_image()?>) center; background-size: cover;">
+<header style="background:url(<?= !is_archive() && has_post_thumbnail() && $post->post_type!= "recording" ? get_the_post_thumbnail_url($post) : header_image()?>) center; background-size: cover;">
     <div class="container">
         <div class="row header-row">
             <?php the_logo(); ?>
@@ -34,12 +34,21 @@ the_html_header()
             <?php endif; ?>
         </div>
     </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <h2 class="col h1">
+                <?= get_theme_mod("homepage_title", "") ?>
+            </h2>
+        </div><div class="row">
+            <h2 class="col h4">
+                <?= get_theme_mod("homepage_subtitle", "") ?>
+            </h2>
+        </div>
+
+    </div>
 
 
-    <?php
-    if(is_front_page()) {
 
-        the_concert_row("concerts-home");
-    }
-    ?>
 </header>
