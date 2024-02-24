@@ -63,37 +63,36 @@ function the_concert_row($class = false){
                 ?>
 
 
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="concert-item">
-                        <div class="concert-image" style="background: url(<?=get_the_post_thumbnail_url($concert["post"], array(300,300))?>) center; background-size: cover;">
+                        <a href="<?= $concert["permalink"] ?>">
+                            <div class="concert-image" style="background: url(<?=get_the_post_thumbnail_url($concert["post"], array(300,300))?>) center; background-size: cover;">
 
-                            <h2 class="concert-title-subtitle h3">
-                                <?= $concert["title"] ?>
-                            </h2>
-                        </div>
-                        <div class="concert-title" >
-
-                            <h2 class="concert-title-subtitle h3">
-                                <?= $concert["title"] ?>
-                            </h2>
-                        </div>
-
-                        <div class="concert-date">
-                            <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down"></span>%e. %B</span> %H:%M', $concert["time"]))?>
-                        </div>
-                        <div class="concert-date">
-                            <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down"></span>%e. %B</span> %H:%M', $concert["time"]))?>
-                        </div>
-
+                                <h2 class="concert-title-subtitle h3">
+                                    <?= $concert["title"] ?>
+                                </h2>
+                                <div class="concert-date">
+                                    <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down"></span>%e. %B %Y</span> %H:%M', $concert["time"]))?>
+                                </div>
+                            </div>
+                        </a>
+                        <p>
+                            <?= get_the_content("",true, $concert["post"]) ?>
+                        </p>
                         <div class="btn-group">
 
                             <?php if($concert["concert_tickets_on_sell"]): ?>
 
-                                <a href="<?= get_site_url()?>/karten" class="btn btn-primary mr-2">Kartenverkauf</a>
+                                <a href="<?= get_site_url()?>/karten" class="btn btn-dark mr-2">Kartenverkauf</a>
 
                             <?php endif; ?>
                             <a href="<?= $concert["permalink"] ?>" class="btn btn-outline-dark">Mehr Informationen</a>
                         </div>
+
+
+
+
                     </div>
                 </div>
                 <?php endforeach;?>
