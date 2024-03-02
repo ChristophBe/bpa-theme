@@ -24,7 +24,7 @@ function the_concert_row($class = false){
         $title = get_the_title($concert);
         $permalink = get_the_permalink($concert);
 
-
+        $concertLocation = get_concert_location($concert);
         $concert_tickets_on_sell = get_post_meta($concert->ID,"concert_tickets_on_sell",true);
         $concert_is_project_concert = get_post_meta($concert->ID,"concert_is_project_concert",true);
         foreach ($times as $time){
@@ -32,6 +32,7 @@ function the_concert_row($class = false){
                 $concertItems[$time] = array(
                     "post" => $concert,
                     "title"=> $title,
+                    "location"=> $concertLocation->getName(),
 
                     "permalink"=> $permalink ."tag/". date("Y-m-d", $time) . "/",
                     "time"=> $time,
@@ -69,11 +70,14 @@ function the_concert_row($class = false){
                         <a href="<?= $concert["permalink"] ?>">
                             <div class="concert-image" style="background: url(<?=get_the_post_thumbnail_url($concert["post"], array(300,300))?>) center; background-size: cover;">
 
-                                <h2 class="concert-title-subtitle h3">
+                                <h2 class="concert-title-subtitle h2">
                                     <?= $concert["title"] ?>
                                 </h2>
                                 <div class="concert-date">
                                     <?=utf8_encode(strftime('<span class="font-weight-bold"><span class="hidden-sm-down"></span>%e. %B %Y</span> %H:%M', $concert["time"]))?>
+                                </div>
+                                <div class="concert-date">
+                                    <?=$concert["location"]?>
                                 </div>
                             </div>
                         </a>

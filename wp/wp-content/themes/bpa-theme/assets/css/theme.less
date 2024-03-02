@@ -179,7 +179,7 @@ body {
 
   header{
     padding: 48px 0;
-    height: 60vh;
+    height: 70vh;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -225,11 +225,24 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      width: 100%;
       p{
         flex-grow: 1;
       }
       a{
         .concert-image{
+          position: relative;
+          &:after{
+            z-index: 1;
+            content: "";
+            display: block;
+            position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(fade(@background-dark, 0%), fade(@background-dark, 90%));
+          }
           display: flex;
           color: #fff;
           width: 100%;
@@ -239,6 +252,9 @@ body {
           justify-content: end;
           padding: 16px;
           margin-bottom: 16px;
+          .concert-title-subtitle, .concert-date{
+            z-index: 2;
+          }
 
         }
 
