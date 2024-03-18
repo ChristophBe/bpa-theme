@@ -15,7 +15,7 @@ function the_html_header(){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href="<?=get_template_directory_uri()?>/assets/css/theme.min.css?v=2.0.0" rel="stylesheet">
+    <link href="<?=get_template_directory_uri()?>/assets/css/theme.min.css?v=<?=md5(time())?>" rel="stylesheet">
     <link rel="shortcut icon" href="<?=get_template_directory_uri()?>/favicon.ico">
     <meta name="theme-color" content="#1e1c32" />
 
@@ -192,9 +192,15 @@ function the_scripts(){
 
 function the_copyright_row(){
     ?>
-    <section class="copyright text-center">
-    &copy;  2022 Bläserphilharmonie Aachen e.V.
-</section>
+    <div class="container">
+        <div class="row">
+            <div class="col copyright">
+
+                &copy;  2024 Bläserphilharmonie Aachen e.V.
+            </div>
+        </div>
+    </div>
+
 <?php
 }
 

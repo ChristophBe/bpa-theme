@@ -76,27 +76,68 @@ add_secondary_post_image("Beitragsbild", "post");
 add_action( 'widgets_init', 'add_news_letter_widget_area' );
 
 
+class BPASetting{
+    private $setting_name;
+    private $display_name;
+    private $domain;
+    private $default;
+
+    /**
+     * @param string $setting_name
+     * @param string $display_name
+     * @param string $default
+     */
+    public function __construct(string $setting_name, string $display_name, string $default="")
+    {
+        $this->setting_name = $setting_name;
+        $this->display_name = $display_name;
+        $this->default = $default;
+    }
+
+    public function getSettingName(): string
+    {
+        return $this->setting_name;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->display_name;
+    }
+
+    public function getDefault(): string
+    {
+        return $this->default;
+    }
+
+
+}
+
 function theme_footer_copyright( $wp_customize ) {
-    $wp_customize->add_setting( 'homepage_title', array(
-        'default' => 'Herzlich Willkommen', //default value of setting
-    ));
-    $wp_customize->add_setting( 'homepage_subtitle', array(
-        'default' => '', //default value of setting
-    ));
-    $wp_customize->add_section( 'homepage_section', array(
-        'title' => __( 'Homepage', 'textdomain' ), //title of customizer menu section
+
+    $settings= array(
+        new BPASetting('homepage_title', 'Titel','Herzlich Willkommen'),
+        new BPASetting('homepage_subtitle', 'Subtitel'),
+        new BPASetting('upcoming_concerts', 'Bevorstehende Konzerte Titel','Bevorstehende Konzerte'),
+        new BPASetting('footer_follow_us', 'Soziale Medien Titel','Folge uns auf'),
+        new BPASetting('footer_supports_us', 'Förderer Titel','Gefördert durch'),
+    );
+    $section_id ="bpa_section";
+    $wp_customize->add_section( $section_id, array(
+        'title' => __( 'BPA-Settings', 'textdomain' ), //title of customizer menu section
         'priority' => 20, //order of display
     ));
-    $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'homepage_title_control', array(
-        'label' => __('Titel', 'textdomain' ), //label of the setting itself
-        'section' => 'homepage_section',
-        'settings' => 'homepage_title',
-    )));
-
-    $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'homepage_subtitle_control', array(
-        'label' => __('Subtitel', 'textdomain' ), //label of the setting itself
-        'section' => 'homepage_section',
-        'settings' => 'homepage_subtitle',
-    )));
+    foreach ($settings as $setting){
+        if (!$setting instanceof BPASetting){
+            return;
+        }
+        $wp_customize->add_setting( $setting->getSettingName(), array(
+            'default' => $setting->getDefault(), //default value of setting
+        ));
+        $wp_customize->add_control( new WP_Customize_Control( $wp_customize, $setting->getSettingName() . '_control', array(
+            'label' => __($setting->getDisplayName(), 'textdomain' ), //label of the setting itself
+            'section' => $section_id,
+            'settings' => $setting->getSettingName(),
+        )));
+    }
 }
 add_action( 'customize_register', 'theme_footer_copyright' );

@@ -4,14 +4,13 @@
 @background-dark: #00102c;
 
 @accent: #ffe126 ;
-@background-middle-blue: #242648 ;
-//@background-dark: #1e1c32 ;
-
-@background: #e3e7ea ;
+@background: lighten(@background-dark,85%) ;
 @font-color-light: #111 ;
 @font-color-dark: #fff ;
 @font-size: 12pt;
 @font-color-link-hover: lighten(@background-dark ,30%);
+@font-color-link-hover-dark: lighten(@background-dark ,70%);
+
 
 @smMax: 768px;
 @mdMax: 992px;
@@ -176,6 +175,46 @@ body {
 
 
   }
+  nav{
+    ul{
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+      li{
+        display: flex;
+        a{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          text-decoration: none;
+          color: @font-color-dark;
+          line-height: 48px;
+          padding:  0 16px;
+          i{  line-height: 48px;
+            font-size: 32px;
+            margin-right: 8px;
+          }
+          &:hover{
+            text-decoration: none;
+            color: @font-color-link-hover-dark;
+          }
+
+        }
+
+      }
+      :first-child{
+        a{
+          padding-left: 0;
+        }
+      }
+      :last-child{
+        a{
+          padding-right: 0;
+        }
+      }
+    }
+  }
 
   header{
     padding: 48px 0;
@@ -267,9 +306,48 @@ body {
         width: 100%;
       }
     }
+  }
+
+  .newsletter{
+    margin-bottom: 0;
+    padding: 48px;
+    background: lighten(@background-dark,80%);
+  }
+  footer{
+    padding: 48px;
+    background: @background-dark;
+    margin-bottom: 0;
+    color: @font-color-dark;
 
 
+    .support-items {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      .support-item{
+        height: 100px;
+        img{
+          height: 100px;
+        }
 
+        margin: 0 16px ;
+
+      }
+      :first-child{
+        margin-left: 0;
+      }
+      :last-child{
+        margin-right: 0;
+      }
+    }
+    .container{
+      :first-child{
+        margin-top: 0;
+      }
+    }
+    .row{
+      margin-top: 32px;
+    }
   }
 
   .slider{
