@@ -64,3 +64,10 @@ function get_concert_time($concert){
     }
     return get_post_meta($concert->ID, "concert_datetimes", true);
 }
+
+function get_concert_admission_time($concert){
+    if(!$concert instanceof WP_Post || !$concert->post_type = 'concert'){
+        return null;
+    }
+    return get_post_meta($concert->ID, "concert_admission_datetimes", true);
+}

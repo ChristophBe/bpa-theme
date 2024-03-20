@@ -43,6 +43,7 @@ class ConcertMetaBox
 
         // Retrieve an existing value from the database.
         $concert_datetimes = get_post_meta( $post->ID, 'concert_datetimes', true );
+        $concert_admission_datetimes = get_post_meta( $post->ID, 'concert_admission_datetimes', true );
         $concert_location = get_post_meta( $post->ID, 'concert_location', true );
         $concert_location_id = get_post_meta( $post->ID, 'concert_location_id', true );
         $concert_tickets_on_sell = get_post_meta( $post->ID, 'concert_tickets_on_sell', true );
@@ -52,6 +53,7 @@ class ConcertMetaBox
 
         $concertDates = array();
         $concertTimes = array();
+        $concertAdmissionTimes = array();
 
         $datesCount = 0;
         if( !empty( $concert_datetimes ) ){
@@ -63,13 +65,18 @@ class ConcertMetaBox
 
         for($i=0;$i < $datesCount ; $i ++ ){
             $concert_datetime = $concert_datetimes[$i];
+            $concert_admission_datetime = $concert_admission_datetimes[$i];
 
 
             $concertDates[$i] = date("Y-m-d", $concert_datetime);
             $concertTimes[$i] = date("H:i", $concert_datetime);
+            if($concert_admission_datetime != 0){
+                $concertAdmissionTimes[$i] = date("H:i", $concert_admission_datetime);
+            }
         }
         $concertDates[] = "";
         $concertTimes[] = "";
+        $concertAdmissionTimes[] = "";
 
 
         if( empty( $concert_location ) ){
@@ -101,6 +108,14 @@ class ConcertMetaBox
                             <input type="time" id="concert_time" name="concert_time[]" class="concert_date_field" placeholder="<?= esc_attr__( 'Konzert Uhrzeit', 'text_domain' ) ?>" value="<?= esc_attr__( $concertTimes[$i] ) ?>">
                             <p class="description"><?= __( 'Uhrzeit', 'text_domain' ) ?></p>
                         </div>
+                        <div>
+                            <input type="time" id="concert_admission_time" name="concert_admission_time[]" class="concert_admission_time_field" placeholder="<?= esc_attr__( 'Einlass Uhrzeit', 'text_domain' ) ?>" value="<?= esc_attr__( $concertAdmissionTimes[$i] ) ?>">
+                            <p class="description"><?= __( 'Einlass Uhrzeit', 'text_domain' ) ?></p>
+                        </div>
+
+                        <pre>
+                            <?php print_r($concert_datetimes[$i]); ?>  <?php print_r($concert_admission_datetimes[$i]); ?>
+                        </pre>
                     </td>
                 </tr>
             <?php
@@ -174,6 +189,7 @@ class ConcertMetaBox
 
         $concert_dates = array();
         $concert_times = array();
+        $concert_admission_times = array();
 
         $datesNumber = isset($_POST['concert_date']) ? sizeof($_POST['concert_date']): 0;
         for ($i = 0;$i < $datesNumber;$i++){
@@ -192,6 +208,14 @@ class ConcertMetaBox
 
         }
 
+        for ($i = 0;$i < $datesNumber;$i++){
+
+            // Sanitize user input.
+            $concert_admission_time= isset($_POST['concert_admission_time'][$i]) ? sanitize_text_field($_POST['concert_admission_time'][$i]) : '';
+            $concert_admission_times[] =  $concert_admission_time;
+
+        }
+
         // Sanitize user input.
 
 
@@ -199,21 +223,30 @@ class ConcertMetaBox
 
 
         $concert_datetimes = array();
+        $concert_admission_datetimes = array();
+
         for ($i = 0;$i < $datesNumber;$i++){
 
             if(!empty($concert_dates[$i]) && !empty($concert_times[$i])){
                 $concert_datetimes[] = strtotime($concert_dates[$i]. " " .  $concert_times[$i], time());
+
+                if(empty($concert_admission_times[$i])){
+                    $concert_admission_datetimes[] = 0;
+                }else{
+                    $concert_admission_datetimes[] = strtotime($concert_dates[$i]. " " .  $concert_admission_times[$i], time());
+                }
             }
 
         }
 
 
-        $concert_tickets_on_sell = isset($_POST["concert_tickets_on_sell"]) ? $_POST["concert_tickets_on_sell"] =="checked" : false;
-        $concert_is_project_concert = isset($_POST["concert_is_project_concert"]) ? $_POST["concert_is_project_concert"] =="checked" : false;
+        $concert_tickets_on_sell = isset($_POST["concert_tickets_on_sell"]) && $_POST["concert_tickets_on_sell"] == "checked";
+        $concert_is_project_concert = isset($_POST["concert_is_project_concert"]) && $_POST["concert_is_project_concert"] == "checked";
 
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'concert_datetimes',$concert_datetimes) ;
+        update_post_meta( $post_id, 'concert_admission_datetimes',$concert_admission_datetimes) ;
         update_post_meta( $post_id, 'concert_location_id',  $location_id);
         update_post_meta( $post_id, 'concert_tickets_on_sell',  $concert_tickets_on_sell);
         update_post_meta( $post_id, 'concert_is_project_concert',  $concert_is_project_concert);

@@ -241,19 +241,40 @@ body {
       color: #fff
     }
 
-      .logo{
-        svg{
-          height: 100px;
-        }
-
+    .logo{
+      svg{
+        height: 100px;
       }
+
+    }
+    .header-row{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+    }
+    nav{
+      a{
+        font-size: 13pt;
+      }
+    }
+
 
     .container{
       z-index: 2;
       position: relative;
     }
 
+    .concert-header{
+      display: flex;
+      align-items: center;
 
+
+      .btn{
+        width: 100%;
+        box-shadow: 0 0 64px @background-dark;
+      }
+    }
   }
   section{
     margin: 48px 0;
@@ -306,6 +327,21 @@ body {
         width: 100%;
       }
     }
+  }
+
+  .concert-info{
+    .concert-info--item{
+      margin-bottom: 32px;
+
+      ul{
+        list-style: none;
+        padding: 0;
+        a {
+          line-height: 32px;
+        }
+      }
+    }
+
   }
 
   .newsletter{
