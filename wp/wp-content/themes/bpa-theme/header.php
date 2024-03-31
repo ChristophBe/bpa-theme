@@ -3,9 +3,9 @@ require_once ("inc/is_sidebar_visible.php");
 require_once ("inc/the_concert_row.php");
 require_once("inc/page_elements.php");
 
-
-function the_concert_header($post)
+function the_concert_header()
 {
+    global $post;
     $concertTimes = get_concert_time($post);
     $concertTicketsOnSell = get_post_meta($post->ID, "concert_tickets_on_sell",true);
     $concertFormatTime = '%e. %B %Y um %H:%M Uhr';
@@ -13,6 +13,8 @@ function the_concert_header($post)
     $featuredDate = get_featured_concert($concertTimes);
 
     $showTicketButton = should_show_ticket_button($concertTicketsOnSell,$concertTimes, $featuredDate);
+
+    setlocale(LC_TIME,"de_DE");
 
     if($featuredDate){
         the_concert_rich_data($post,$featuredDate);
@@ -58,14 +60,47 @@ function the_concert_header($post)
     <?php
 }
 
-function the_default_single_header($post)
+function the_default_single_header()
 {
+    global $post
 ?>
     <div class="container">
         <div class="row">
             <h2 class="col h1">
-                <?= get_the_title($post) ?>
+               <?= get_the_title($post) ?>
             </h2>
+        </div>
+
+    </div>
+<?php
+}
+function the_post_header()
+{
+    global $post
+?>
+    <div class="container">
+        <div class="row">
+            <h2 class="col-12 h1">
+               <?= get_the_title($post) ?>
+            </h2>
+
+            <span class="col-12 h4"><?= get_the_date("", $post) ?></span>
+        </div>
+
+    </div>
+<?php
+}function the_recording_header()
+{
+    global $post;
+    $recording_composer = get_post_meta( $post->ID, 'recording_composer', true );
+?>
+    <div class="container">
+        <div class="row">
+            <h2 class="col-12 h1" id="player">
+               <?= get_the_title($post) ?>
+            </h2>
+
+            <span class="col-12 h4"><?= $recording_composer ?></span>
         </div>
 
     </div>
@@ -121,15 +156,24 @@ the_html_header()
     </div>
 
     <?php endif; ?>
+
     <?php
-    if (!is_front_page() && is_single()){
-        global $post;
+    global $post;
+    if (!is_front_page() && (is_single($post) || is_page($post))){
         switch ($post->post_type){
             case "concert":
-                the_concert_header($post);
+                the_concert_header();
                 break;
+            case "post":
+                the_post_header();
+                break;
+            case "recording":
+                the_recording_header();
+                break;
+
+
             default:
-                the_default_single_header($post);
+                the_default_single_header();
         }
     }
 

@@ -8,18 +8,10 @@ $recording_youtube_id = get_post_meta( $post->ID, 'recording_youtube_id', true )
 $recording_date = get_post_meta( $post->ID, 'recording_date', true );
 
 ?>
-<section class="content" id="player">
+<section class="content">
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h2 class="h1">
-                    <?php the_title()?>
-                </h2>
-                <h3 class="h3">
-                    <?=$recording_composer?>
-                </h3>
-            </div>
             <div class="col-12">
                 <div class="recording-player">
                     <iframe  src="https://www.youtube-nocookie.com/embed/<?=$recording_youtube_id?>?autoplay=1&rel=0&amp;controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

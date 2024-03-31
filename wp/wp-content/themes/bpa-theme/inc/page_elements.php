@@ -209,12 +209,12 @@ function the_recording_row(){
 
     <section class="recordings">
         <div class="container">
-            <div class="row"><h3 class="col-12 h2">Konzertmitschnitte</h3></div>
+            <div class="row"><h3 class="col-12 h1">Videos</h3></div>
             <div class="row recordings-row"></div>
             <div class="row recordings-items">
                 <?php
                 $args = array(
-                    'posts_per_page'   => 10,
+                    'posts_per_page'   => 3,
                     'offset'           => 0,
                     'orderby'          => 'meta_value',
                     'order'            => 'DESC',
@@ -236,7 +236,7 @@ function the_recording_row(){
 
             </div>
             <div class="row"><div class="col-12">
-                    <a href="<?=get_post_type_archive_link("recording")?>" class="btn btn-outline-light">weitere Konzertmitschnitte</a>
+                    <a href="<?=get_post_type_archive_link("recording")?>" class="btn btn-outline-dark">weitere Konzertmitschnitte</a>
                 </div>
             </div>
         </div>

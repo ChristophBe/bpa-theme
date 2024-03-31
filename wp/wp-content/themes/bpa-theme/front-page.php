@@ -37,25 +37,25 @@ the_concert_row();
                 $posts_array = get_posts( $args );
 
                 foreach ($posts_array as $post): setup_postdata($post);?>
+                    <?php
+                    $post_type = $post->post_type;
+                    $image_id  = 'secondary-image-' . $post_type;
+                    ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="content-item">
 
-                            <div class="post-meta"><i><?php the_date() ?></i></div>
-                            <h3 class="h3">
-                                <a href="<?= get_the_permalink() ?>"><?php the_title() ?></a>
-                            </h3>
+                            <a href="<?= get_the_permalink() ?>" class="post-header" >
+                                <div class="post-image" style="background: url(<?= MultiPostThumbnails::get_post_thumbnail_url($post_type, $image_id, $post->ID, array(300,200)) ?>) center; background-size: cover;">
 
-
-                            <?php
-
-
-                            $post_type = $post->post_type;
-                            $image_id  = 'secondary-image-' . $post_type;
-                            if (class_exists('MultiPostThumbnails') && MultiPostThumbnails::has_post_thumbnail($post_type, $image_id, $post->ID)) : ?>
-                                <div class="post-thumbnail">
-                                    <a href="<?= get_the_permalink() ?>"><img loading="lazy" src="<?= MultiPostThumbnails::get_post_thumbnail_url($post_type, $image_id, $post->ID, array(300,200)) ?>" alt="<?php the_title() ?>"></a>
+                                    <h2 class="post-title h2">
+                                        <?php the_title() ?>
+                                    </h2>
+                                    <div class="post-date">
+                                        <?php the_date() ?>
+                                    </div>
                                 </div>
-                            <?php endif; ?>
+                            </a>
+
                             <?php the_content("Weiterlesen...",true) ?>
                         </div>
                     </div>
@@ -74,4 +74,5 @@ the_concert_row();
         </div>
     </section>
 <?php
+the_recording_row();
 get_footer();

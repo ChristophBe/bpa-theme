@@ -5,12 +5,12 @@ require_once("inc/concert-functions.php");
 
 global $post;
 
+setlocale(LC_TIME,"de_DE");
+
 get_header();
 the_post();
 
 
-
-setlocale(LC_TIME,"de_DE");
 
 global $post;
 
@@ -35,13 +35,8 @@ if($featuredDate){
 <section class="content">
     <div class="container">
         <div class="row">
-
             <div class="col-md-8">
-
                 <?php the_content() ?>
-
-
-
             </div>
             <div class="col-md-4 concert-info">
 

@@ -15,11 +15,6 @@ the_post();
                 <div class="<?=class_exists('MultiPostThumbnails') && MultiPostThumbnails::has_post_thumbnail($post_type, $image_id, $post->ID) ?"col-md-8":"col-md-12"?> col-sm-12 post-content">
 
                     <div class="content-item">
-                        <h2 class="h2">
-                            <?php the_title() ?>
-
-                        </h2>
-                        <div class="post-meta"><i><?php the_date() ?></i></div>
                         <?php the_content() ?>
                     </div>
 
