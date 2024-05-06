@@ -29,44 +29,45 @@ function the_html_header(){
 function the_logo(){
 ?>
     <div class="logo">
+        <a href="<?= get_home_url() ?>">
+            <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 546.45 178.4">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            font-size: 48px;
+                        }
 
-        <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 546.45 178.4">
-            <defs>
-                <style>
-                    .cls-1 {
-                        font-size: 48px;
-                    }
+                        .cls-2 {
+                            fill: none;
+                            stroke: #ffe626;
+                            stroke-miterlimit: 10;
+                            stroke-width: 6px;
+                        }
 
-                    .cls-2 {
-                        fill: none;
-                        stroke: #ffe626;
-                        stroke-miterlimit: 10;
-                        stroke-width: 6px;
-                    }
+                        .cls-3 {
+                            fill: #fff;
+                            font-family: Poppins-Light, Poppins;
+                            font-weight: 300;
+                        }
 
-                    .cls-3 {
-                        fill: #fff;
-                        font-family: Poppins-Light, Poppins;
-                        font-weight: 300;
-                    }
-
-                    .cls-4 {
-                        fill: #ffe126;
-                        font-family: Poppins-Bold, Poppins;
-                        font-weight: 700;
-                    }
-                </style>
-            </defs>
-            <g id="Ebene_3" data-name="Ebene 3">
-                <text class="cls-1" transform="translate(186.06 55.33)"><tspan class="cls-3"><tspan x="0" y="0">BLÄSER</tspan></tspan><tspan class="cls-4"><tspan x="0" y="48">PHILHARMONIE</tspan></tspan><tspan class="cls-3"><tspan x="0" y="96">AACHEN</tspan></tspan></text>
-                <g>
-                    <circle class="cls-2" cx="82.93" cy="82.93" r="79.92"/>
-                    <circle class="cls-2" cx="74.15" cy="81.6" r="71.04"/>
-                    <circle class="cls-2" cx="82.54" cy="84.49" r="62.15"/>
-                    <ellipse class="cls-2" cx="75.68" cy="78.85" rx="53.27" ry="53.28" transform="translate(-33.57 81.83) rotate(-47.73)"/>
+                        .cls-4 {
+                            fill: #ffe126;
+                            font-family: Poppins-Bold, Poppins;
+                            font-weight: 700;
+                        }
+                    </style>
+                </defs>
+                <g id="Ebene_3" data-name="Ebene 3">
+                    <text class="cls-1" transform="translate(186.06 55.33)"><tspan class="cls-3"><tspan x="0" y="0">BLÄSER</tspan></tspan><tspan class="cls-4"><tspan x="0" y="48">PHILHARMONIE</tspan></tspan><tspan class="cls-3"><tspan x="0" y="96">AACHEN</tspan></tspan></text>
+                    <g>
+                        <circle class="cls-2" cx="82.93" cy="82.93" r="79.92"/>
+                        <circle class="cls-2" cx="74.15" cy="81.6" r="71.04"/>
+                        <circle class="cls-2" cx="82.54" cy="84.49" r="62.15"/>
+                        <ellipse class="cls-2" cx="75.68" cy="78.85" rx="53.27" ry="53.28" transform="translate(-33.57 81.83) rotate(-47.73)"/>
+                    </g>
                 </g>
-            </g>
-        </svg>
+            </svg>
+        </a>
     </div>
 <?php
 }
