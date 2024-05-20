@@ -53,7 +53,7 @@ class ConcertMetaBox
 
         $concertDates = array();
         $concertTimes = array();
-        $concertAdmissionTimes = array();
+         $concertAdmissionTimes = array();
 
         $datesCount = 0;
         if( !empty( $concert_datetimes ) ){
@@ -65,7 +65,7 @@ class ConcertMetaBox
 
         for($i=0;$i < $datesCount ; $i ++ ){
             $concert_datetime = $concert_datetimes[$i];
-            $concert_admission_datetime = $concert_admission_datetimes[$i];
+            $concert_admission_datetime = $concert_admission_datetimes[$i] ?? 0;
 
 
             $concertDates[$i] = date("Y-m-d", $concert_datetime);
@@ -112,10 +112,6 @@ class ConcertMetaBox
                             <input type="time" id="concert_admission_time" name="concert_admission_time[]" class="concert_admission_time_field" placeholder="<?= esc_attr__( 'Einlass Uhrzeit', 'text_domain' ) ?>" value="<?= esc_attr__( $concertAdmissionTimes[$i] ) ?>">
                             <p class="description"><?= __( 'Einlass Uhrzeit', 'text_domain' ) ?></p>
                         </div>
-
-                        <pre>
-                            <?php print_r($concert_datetimes[$i]); ?>  <?php print_r($concert_admission_datetimes[$i]); ?>
-                        </pre>
                     </td>
                 </tr>
             <?php

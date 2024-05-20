@@ -19,7 +19,8 @@ the_concert_row();
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h3 class="h1">Neuigkeiten</h3>
+                    <h3 class="h1">
+                        <?= get_theme_mod("post_archive_title","Neuigkeiten") ?></h3>
                 </div>
             </div>
             <div class="row news-row"></div>

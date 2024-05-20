@@ -22,7 +22,7 @@ $concertAdmissionTimes = get_concert_admission_time($post);
 $concertLocation = get_concert_location($post);
 $concertTicketsOnSell = get_post_meta($post->ID, "concert_tickets_on_sell",true);
 $concertIsProjectConcert = get_post_meta($post->ID, "concert_is_project_concert",true);
-$concertFormatTime = '%e. %B %Y um %H:%M Uhr';
+$concertFormatTime = '<strong>%e. %B %Y</strong> %H:%M Uhr';
 
 $featuredDate = get_featured_concert($concertTimes);
 

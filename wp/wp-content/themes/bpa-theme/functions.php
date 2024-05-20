@@ -120,6 +120,9 @@ function theme_footer_copyright( $wp_customize ) {
         new BPASetting('upcoming_concerts', 'Bevorstehende Konzerte Titel','Bevorstehende Konzerte'),
         new BPASetting('footer_follow_us', 'Soziale Medien Titel','Folge uns auf'),
         new BPASetting('footer_supports_us', 'Förderer Titel','Gefördert durch'),
+        new BPASetting('recording_archive_title', 'Konzertaufnahmen Titel','Konzert Aufnahmen'),
+        new BPASetting('post_archive_title', 'Neuigkeiten Titel','Neuigkeiten'),
+        new BPASetting('concert_archive_title', 'Konzerte Titel','Konzerte'),
     );
     $section_id ="bpa_section";
     $wp_customize->add_section( $section_id, array(

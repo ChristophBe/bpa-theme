@@ -1,14 +1,16 @@
 <?php
 require_once ("inc/is_sidebar_visible.php");
 require_once ("inc/the_concert_row.php");
-require_once("inc/page_elements.php");
+require_once ("inc/page_elements.php");
+require_once ("inc/archive_functions.php");
 
 function the_concert_header()
 {
     global $post;
     $concertTimes = get_concert_time($post);
     $concertTicketsOnSell = get_post_meta($post->ID, "concert_tickets_on_sell",true);
-    $concertFormatTime = '%e. %B %Y um %H:%M Uhr';
+    $concertFormatDate = '%e. %B %Y';
+    $concertFormatTime = '%H:%M Uhr';
 
     $featuredDate = get_featured_concert($concertTimes);
 
@@ -25,22 +27,26 @@ function the_concert_header()
             <div class="col-md-8">
                 <div class="info">
                     <h2 class="h1">
-                        <?= get_the_title($post) ?>
+                        <?= is_project_concert($post) ? "Konzert der</br>":"" ?><?= get_the_title($post) ?>
                     </h2>
                     <div class="concert-meta">
                         <div class="concert-meta--item">
                             <?php
+
+                            $displayedTimes = $concertTimes;
                             if($featuredDate){
-                                echo '<h4 class="h4">' . utf8_encode(strftime($concertFormatTime, $featuredDate ) ) . '</h4>';
+                                $displayedTimes = array($featuredDate);
                             }
-                            else
-                                foreach ($concertTimes as $concertTime){
 
-                                    $dateString =utf8_encode(strftime($concertFormatTime, $concertTime ));
+                             foreach ($displayedTimes as $concertTime){
 
-                                    echo '<h4 class="h4">' . $dateString . '</h4>';
+                                 $dateString =utf8_encode(strftime($concertFormatDate, $concertTime ));
+                                 $timeString =utf8_encode(strftime($concertFormatTime, $concertTime ));
 
-                                }
+                                 echo '<h4 class="h4"><strong>' . $dateString . '</strong> ' . $timeString. '</h4>';
+
+                             }
+
                             ?>
                         </div>
                     </div>
@@ -107,6 +113,19 @@ function the_post_header()
 <?php
 }
 
+function the_archive_header($modName, $default="")
+{
+?>
+<div class="container headline">
+    <div class="row">
+        <h2 class="col-12 h1">
+            <?= get_theme_mod($modName, $default) ?>
+        </h2>
+    </div>
+
+</div>
+<?php
+}
 global $post;
 the_html_header()
 ?>
@@ -179,6 +198,19 @@ the_html_header()
                 the_default_single_header();
         }
     }
+    if ( is_archive()){
+
+        $post_type= get_archive_post_type();
+        switch ($post_type){
+            case "concert":
+            case "post":
+            case "recording":
+                the_archive_header($post_type . "_archive_title");
+                break;
+
+        }
+    }
+
 
     ?>
 

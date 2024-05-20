@@ -210,7 +210,7 @@ function the_recording_row(){
 
     <section class="recordings">
         <div class="container">
-            <div class="row"><h3 class="col-12 h1">Videos</h3></div>
+            <div class="row"><h3 class="col-12 h1"><?= get_theme_mod("recording_archive_title", "Videos") ?></h3></div>
             <div class="row recordings-row"></div>
             <div class="row recordings-items">
                 <?php

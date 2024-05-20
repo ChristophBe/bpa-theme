@@ -14,20 +14,24 @@ $args = array( 'post_type' => 'concert',
 );
 
 
-$concerts = get_posts( $args );
+$concertPosts = get_posts( $args );
 $futureConcerts = array();
 $pastConcerts = array();
 $hasFuture = false;
-foreach ($concerts as $concert){
+foreach ($concertPosts as $concertPost){
 
-    $times = get_concert_time($concert);
+    $concerts = get_concerts_from_post($concertPost);
 
-    foreach ($times as $time){
-        if($time > time()){
-            $futureConcerts[$time] = $concert;
+    $times = get_concert_time($concertPost);
+
+    foreach ($concerts as $concert){
+
+        $timestamp = $concert->getTime()->getTimestamp();
+        if($concert->isUpcoming()){
+            $futureConcerts[$timestamp] = $concert;
         }
         else{
-            $pastConcerts[$time] = $concert;
+            $pastConcerts[$timestamp] = $concert;
         }
 
     }
@@ -40,54 +44,50 @@ setlocale(LC_TIME,"de_DE");
 
 
 
-function concertRow($concert, $time)
+function concertRow(Concert $concert)
 {
 
-    $url = get_the_permalink($concert) ."tag/" .  date("Y-m-d", $time) . "/";
 
-    $concertLocation = get_concert_location($concert);
-
-    $concertTicketsOnSell = get_post_meta($concert->ID, "concert_tickets_on_sell",true);
-    $concertIsProjectConcert = get_post_meta($concert->ID, "concert_is_project_concert",true);
-
-    $concertFormatTime = '%e. %B %Y um %H:%M Uhr';
+    $concertFormatDate = 'j. F Y';
+    $concertFormatTime = 'H:i \U\h\r';
    ?>
     <div class="row post-row concert-row">
 
 
-        <?php if (has_post_thumbnail($concert)) : ?>
+        <?php if (has_post_thumbnail($concert->getPost())) : ?>
             <div class="col-md-4">
                 <div class="concert-thumbnail">
-                    <a href="<?= $url ?>"><img loading="lazy" src="<?= get_the_post_thumbnail_url($concert, array(300,300)) ?>"
-                                               alt="<?= get_the_title($concert) ?>"></a>
+                    <a href="<?= $concert->getPermalink() ?>"><img loading="lazy" src="<?= get_the_post_thumbnail_url($concert->getPost(), array(300,300)) ?>"
+                                               alt="<?= $concert->title ?>"></a>
                 </div>
             </div>
         <?php endif; ?>
 
-        <div class="<?= !has_post_thumbnail($concert) ? "offset-md-4 " : "" ?>col-md-8 col-sm-12 post-content">
+        <div class="<?= !has_post_thumbnail($concert->getPost()) ? "offset-md-4 " : "" ?>col-md-8 col-sm-12 post-content">
 
             <div class="content-item">
                 <h2 class="h2">
-                    <?php if($concertIsProjectConcert): ?><span class="concert-title-subtitle">Konzert der </span><? endif;?>
-                    <a href="<?= $url ?>"><?= get_the_title($concert) ?></a>
+
+                    <a href="<?= $concert->getPermalink() ?>"><?php if($concert->isProjectConcert()): ?><span class="concert-title-subtitle">Konzert der </span><? endif;?><?= $concert->getTitle() ?></a>
 
                 </h2>
                 <div class="concert-meta">
                     <div class="concert-meta--item">
                         <?php
-                        $dateString = utf8_encode(strftime($concertFormatTime, $time));
-                        echo '<h4 class="h4">' . $dateString . '</h4>';
+                        $dateString = utf8_encode( $concert->getTime()->format($concertFormatDate));
+                        $timeString = utf8_encode( $concert->getTime()->format($concertFormatTime));
+                        echo '<h4 class="h4"><strong>' . $dateString . '</strong> ' . $timeString . '</h4>';
                         ?>
                     </div>
                     <div class="concert-meta--item">
-                        <?= $concertLocation->getName() ?>
+                        <?= $concert->getLocation()->getName() ?>
                     </div>
                     <div class="btn-group">
-                        <?php if($time > time() && $concertTicketsOnSell):?>
+                        <?php if($concert->isUpcoming() && $concert->getTicketsOnSell()):?>
 
                             <a class="btn btn-dark mr-2" href="<?= get_site_url() ?>/karten">Kartenverkauf</a>
                         <?php endif; ?>
-                        <a class="btn btn-outline-dark" href="<?= $url ?>">mehr Informationen</a>
+                        <a class="btn btn-outline-dark" href="<?= $concert->getPermalink() ?>">mehr Informationen</a>
 
                     </div>
                 </div>
@@ -105,12 +105,6 @@ function concertRow($concert, $time)
     <section class="content">
         <div class="container">
             <?php if($futureConcerts): ?>
-            <div class="row">
-                <div class="col">
-                    <h1 >Nächste Konzerte</h1>
-                </div>
-
-            </div>
 
 
 
@@ -118,21 +112,19 @@ function concertRow($concert, $time)
             <?php
             $first = true;
             echo '<script type="application/ld+json">[';
-            foreach ($futureConcerts as $time => $concert){
+            foreach ($futureConcerts as $concert){
                 if(!$first){
                     echo ",\n";
                 }
                 else{
                     $first = false;
                 }
-                the_concert_rich_data($concert,$time,false);
+                the_concert_rich_data($concert->getPost(),$concert->getTime()->getTimestamp(),false);
             }
             echo']</script>';
-
-            foreach ($futureConcerts as $time => $concert){
-                concertRow($concert,$time);
+            foreach ($futureConcerts as $concert){
+                concertRow($concert);
             }
-
             endif;
 
             if($pastConcerts) :?>
@@ -144,8 +136,8 @@ function concertRow($concert, $time)
 
                 </div>
             <?php
-            foreach ($pastConcerts as $time => $concert){
-                concertRow($concert,$time);
+            foreach ($pastConcerts as $concert){
+                concertRow($concert);
             }
             endif; ?>
 
