@@ -3,6 +3,8 @@
 
 @background-dark: #00102c;
 
+
+@background-image-brightness: 120%;
 @accent: #ffe126 ;
 @background: lighten(@background-dark,85%) ;
 @font-color-light: #111 ;
@@ -267,7 +269,8 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(fade(@background-dark, 00%), @background-dark);
+      backdrop-filter: brightness(@background-image-brightness);
+      background: radial-gradient(fade(@background-dark, 0%), @background-dark);
     }
     h1,h2,h3,h4,h5{
       color: #fff
@@ -495,6 +498,7 @@ body {
           left: 0;
           right: 0;
           bottom: 0;
+          backdrop-filter: brightness(@background-image-brightness);
           background: linear-gradient(fade(@background-dark, 0%), fade(@background-dark, 90%));
         }
         display: flex;
@@ -539,6 +543,7 @@ body {
           left: 0;
           right: 0;
           bottom: 0;
+          backdrop-filter: brightness(@background-image-brightness);
           background: linear-gradient(fade(@background-dark, 0%), fade(@background-dark, 90%));
         }
 
@@ -580,6 +585,7 @@ body {
         left: 0;
         right: 0;
         bottom: 0;
+        backdrop-filter: brightness(@background-image-brightness);
         background: linear-gradient(fade(@background-dark, 0%), fade(@background-dark, 90%));
       }
 
