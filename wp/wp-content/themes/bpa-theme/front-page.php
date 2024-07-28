@@ -42,7 +42,7 @@ the_concert_row();
                     $post_type = $post->post_type;
                     $image_id  = 'secondary-image-' . $post_type;
                     ?>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="content-item">
 
                             <a href="<?= get_the_permalink() ?>" class="post-header" >

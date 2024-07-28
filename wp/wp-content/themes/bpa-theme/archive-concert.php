@@ -85,7 +85,7 @@ function concertRow(Concert $concert)
                     <div class="btn-group">
                         <?php if($concert->isUpcoming() && $concert->getTicketsOnSell()):?>
 
-                            <a class="btn btn-dark mr-2" href="<?= get_site_url() ?>/karten">Kartenverkauf</a>
+                            <a class="btn btn-dark" href="<?= get_site_url() ?>/karten">Kartenverkauf</a>
                         <?php endif; ?>
                         <a class="btn btn-outline-dark" href="<?= $concert->getPermalink() ?>">mehr Informationen</a>
 

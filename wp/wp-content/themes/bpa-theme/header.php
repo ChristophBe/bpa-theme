@@ -126,6 +126,21 @@ function the_archive_header($modName, $default="")
 </div>
 <?php
 }
+
+function the_landing_page_header()
+{
+global $post
+?>
+<div class="container headline">
+    <div class="row">
+        <h2 class="col-12 h1">
+            <?= get_the_title($post) ?>
+        </h2>
+    </div>
+
+</div>
+<?php
+}
 global $post;
 the_html_header()
 ?>
@@ -154,9 +169,9 @@ the_html_header()
                     </nav>
             </div>
 
-
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
+
         </div>
     </div>
     
@@ -191,6 +206,9 @@ the_html_header()
                 break;
             case "recording":
                 the_recording_header();
+                break;
+            case "landing-page":
+                the_landing_page_header();
                 break;
 
 

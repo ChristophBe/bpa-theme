@@ -19,6 +19,7 @@
 
 @smMax: 768px;
 @mdMax: 992px;
+@lgMax: 1200px;
 
 
 .makeTransitionT(@target, @duration){
@@ -127,6 +128,24 @@ body {
     }
   }
 
+
+  .container{
+    max-width: 1400px;
+    @media (max-width: 1500px) {
+      max-width: 1100px;
+    }
+    @media (max-width: @lgMax) {
+      max-width: 900px;
+    } @media (max-width: @mdMax) {
+      max-width: 700px;
+    }
+    @media (max-width: @smMax) {
+      max-width: 800px;
+    }
+
+  }
+
+
   h1,h2,h3,h4,h5, .h1, .h2, .h3, .h4, .h5 {
     text-justify: none;
   }
@@ -144,7 +163,7 @@ body {
   }
 
   .btn {
-    border-radius: 0;
+    border-radius: 32px;
 
     i {
       margin-right: 10px;
@@ -255,7 +274,7 @@ body {
   header{
     text-align: left;
     padding: 48px 0;
-    height: 90vh;
+    height: 85vh;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -526,6 +545,9 @@ body {
     .btn-group{
       align-self: end;
       width: 100%;
+      .btn{
+        margin: 0;
+      }
     }
   }
 
@@ -774,5 +796,95 @@ body {
     .concert-meta--item{
       margin-bottom: 8px
     }
+  }
+
+  &.landing-page{
+    background: @background-dark;
+    header{
+      max-height: 60vh;
+      &:before{
+        display: flex;
+        content: " ";
+        background: linear-gradient(fade(@background-dark, 0%), @background-dark);
+        height: 128px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+
+      }
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    section{
+      margin-top: 0;
+      padding-top: 0;
+      margin-bottom: 0;
+
+      padding-bottom: 0;
+    }
+    .content {
+
+
+      background: @background-dark;
+      color: @font-color-dark;
+      a{
+        color: @font-color-dark;
+      }
+
+      ul{
+        list-style: none;
+        padding: 0;
+        li{
+          margin: 0;
+          line-height: 32px;
+          a{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-decoration: none;
+            color: @font-color-dark;
+            line-height: 48px;
+            padding:  0;
+            i{
+              line-height: 48px;
+              font-size: 32px;
+              margin-right: 8px;
+              width: 48px;
+              text-align: left;
+            }
+            &:hover{
+              text-decoration: none;
+              color: @font-color-link-hover-dark;
+            }
+
+          }
+        }
+      }
+
+    }
+    footer{
+      padding: 0;
+      .newsletter{
+        background: @background-dark;
+      }
+
+      .btn-outline-dark{
+        .btn-outline-light();
+      }
+      .btn-dark{
+        .btn-light();
+      }
+      .form-control{
+        border-color: @font-color-dark;
+      }
+      a {
+        color: @font-color-dark
+      }
+      section{
+        margin: 16px 0;
+      }
+    }
+
+
   }
 }

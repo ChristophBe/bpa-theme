@@ -8,7 +8,7 @@ function the_concert_item(Concert $concert, $withDescription= true)
 {
     ?>
 
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
         <div class="concert-item">
             <a href="<?= $concert ->getPermalink()?>">
                 <div class="concert-image" style="background: url(<?=get_the_post_thumbnail_url($concert->getPost(), array(300,300))?>) center; background-size: cover;">
@@ -35,7 +35,7 @@ function the_concert_item(Concert $concert, $withDescription= true)
 
                 <?php if($concert->getTicketsOnSell()): ?>
 
-                    <a href="<?= get_site_url()?>/karten" class="btn btn-dark mr-2">Kartenverkauf</a>
+                    <a href="<?= get_site_url()?>/karten" class="btn btn-dark">Kartenverkauf</a>
 
                 <?php endif; ?>
                 <a href="<?= $concert->getPermalink()?>" class="btn btn-outline-dark">Mehr Informationen</a>

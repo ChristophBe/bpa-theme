@@ -193,14 +193,14 @@ function the_scripts(){
 
 function the_copyright_row(){
     ?>
-    <div class="container">
+    <section class="container">
         <div class="row">
             <div class="col copyright">
 
                 &copy;  2024 Bläserphilharmonie Aachen e.V.
             </div>
         </div>
-    </div>
+    </section>
 
 <?php
 }
@@ -229,7 +229,7 @@ function the_recording_row(){
 
                 foreach ($posts_array as $post): setup_postdata($post);?>
 
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <?php  the_recording_item($post) ?>
                     </div>
                 <? endforeach;?>

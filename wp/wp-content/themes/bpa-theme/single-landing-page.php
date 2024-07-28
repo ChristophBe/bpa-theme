@@ -1,7 +1,7 @@
 <?php
 
 require_once("inc/page_elements.php");
-get_header();
+the_html_header();
 the_post();
 
 
@@ -13,6 +13,7 @@ global $post;
 
 ?>
 <body class="landing-page">
+<?php get_header() ?>
 <section class="content">
     <div class="container">
         <div class="row">
@@ -35,14 +36,15 @@ global $post;
 
     the_newletter_row();
     the_concert_row();
-    the_recording_row();
+    //the_recording_row();
+    the_copyright_row();
 
     ?>
 
 </footer>
 
 <?php
-the_copyright_row();
+
 the_scripts();
 wp_footer();
 ?>
